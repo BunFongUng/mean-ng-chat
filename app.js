@@ -1,20 +1,11 @@
+require('./config/database');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
 
 var app = express();
-mongoose.Promise = global.Promise;
-
-mongoose.connect('mongodb://localhost/mean-chat-ng4')
-.then(function() {
-  console.log('connection successfully');
-})
-.catch(function(err) {
-  console.error(err);
-});
 
 var chat = require('./routes/chat');
 

@@ -1,13 +1,11 @@
 var express = require('express');
-var http = require('http');
 var router = express.Router();
-var mongoose = require('mongoose');
+var http = require('http');
 var io = require('socket.io')(server);
-var Chat = require('../models/Chat');
+var chatController = require('../controllers/chat.controller');
 
 var app = express();
 var server = http.createServer(app);
-
 
 server.listen(4000);
 
@@ -28,26 +26,8 @@ io.on('connection', function(socket) {
 });
 
 // GET ALL CHATS
-router.get('/:room', function(req, res, next) {
-  Chat.find({ room: req.params.room }, function(err, chats) {
-    if(err) {
-      return next(err);
-    }
+router.get('/:room', chatController.getChatList);
 
-    res.json({
-      data: chats
-    });
-  });
-});
-
-router.post('/', function(req, res, next) {
-  Chat.create(req.body, function(err, chat) {
-    if(err) {
-      return next(err);
-    }
-
-    res.json(chat);
-  });
-});
+router.post('/', chatController.createNewChatRoom);
 
 module.exports = router;

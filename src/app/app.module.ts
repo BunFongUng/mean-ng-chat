@@ -5,10 +5,12 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { ChatService } from './chat.service';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
