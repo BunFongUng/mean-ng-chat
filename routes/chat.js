@@ -40,8 +40,14 @@ router.get('/:room', function(req, res, next) {
   });
 });
 
-router.get('/', function(req, res, next) {
-  res.send('Express REST API');
+router.post('/', function(req, res, next) {
+  Chat.create(req.body, function(err, chat) {
+    if(err) {
+      return next(err);
+    }
+
+    res.json(chat);
+  });
 });
 
 module.exports = router;
