@@ -21,7 +21,7 @@ export class ChatService {
 
   saveChat(data) {
     return new Promise((resolve, reject) => {
-      this.http.post('/cha/', data)
+      this.http.post('/chat/', data)
         .map(res => res.json())
         .subscribe(res => {
           resolve(res);

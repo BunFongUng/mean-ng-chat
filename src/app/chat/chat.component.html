@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-12">
       <div class="panel panel-primary" *ngIf="joinned; else joinroom">
         <div class="panel-heading">
           <span class="glyphicon glyphicon-comment"></span> {{ msgData.room }}
@@ -12,17 +12,17 @@
         </div>
         <div #scrollMe class="panel-body">
           <ul class="chat">
-            <li *ngFor="let c of chats.data">
+            <li *ngFor="let c of chats">
               <div class="left clearfix" *ngIf="c.nickname===msgData.nickname; else rightchat">
                 <span class="chat-img pull-left">
-                  <img src="http://placehold.it/50/55C1E7/fff&text=ME" alt="User Avatar" class="img-circle" />
+                  <img src="http://placehold.it/40/55C1E7/fff&text=ME" alt="User Avatar" class="img-circle" />
                 </span>
                 <div class="chat-body clearfix">
                   <div class="header">
-                    <strong class="primary-font">{{ c.nickname }}</strong> <small class="pull-right text-muted">
+                    <strong [ngStyle]="{'padding-left': '25px'}">{{ c.nickname }}</strong> <small class="pull-right text-muted">
                     <span class="glyphicon glyphicon-time"></span>{{ c.updated_at | date: 'medium' }}</small>
                   </div>
-                  <p>{{ c.message }}</p>
+                  <p class="message">{{ c.message }}</p>
                 </div>
               </div>
               <ng-template #rightchat>
@@ -33,9 +33,9 @@
                   <div class="chat-body clearfix">
                     <div class="header">
                       <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>{{ c.updated_at | date: 'medium' }}</small>
-                      <strong class="pull-right primary-font">{{ c.nickname }}</strong>
+                      <strong class="pull-right primary-font" [ngStyle]="{'padding-right': '15px'}">{{ c.nickname }}</strong>
                     </div>
-                    <p>{{ c.message }}</p>
+                    <p [ngStyle]="{'padding-left': '55px'}">{{ c.message }}</p>
                   </div>
                 </div>
               </ng-template>
