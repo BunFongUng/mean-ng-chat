@@ -7,9 +7,7 @@ var chatController = {
         return next(err);
       }
 
-      res.json({
-        data: chats
-      });
+      res.json(chats);
     });
   },
   createNewChatRoom: function (req, res, next) {

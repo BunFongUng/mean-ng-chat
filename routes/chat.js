@@ -1,11 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var http = require('http');
+var app = express();
+var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var chatController = require('../controllers/chat.controller');
-
-var app = express();
-var server = http.createServer(app);
 
 server.listen(4000);
 
